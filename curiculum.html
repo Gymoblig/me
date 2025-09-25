@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenyBeany - Curriculum</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader-container">
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loader-text" data-en="Loading..." data-sk="Načítavam...">Loading...</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">GreenyBeany</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html" data-en="About Me" data-sk="O mne">About Me</a></li>
+        <li><a href="curiculum.html" class="active" data-en="Curriculum" data-sk="Životopis">Curriculum</a></li>
+        <li><a href="timetable.html" data-en="Timetable" data-sk="Rozvrh">Timetable</a></li>
+        <li><a href="projects.html" data-en="Projects" data-sk="Projekty">Projects</a></li>
+      </ul>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle"><img id="theme-icon" src="sun.png" alt="theme"></button>
+      <button id="lang-toggle"><img id="lang-icon" src="united-kingdom.png" alt="lang"></button>
+      <button id="burger">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 data-en="Curriculum Vitae" data-sk="Životopis">Curriculum Vitae</h1>
+      
+      <div class="cv-container">
+        <div class="cv-header">
+          <h2 data-en="Matúš Ondrejka" data-sk="Matúš Ondrejka">Matúš Ondrejka</h2>
+          <p class="cv-intro" data-en="3rd year Robotics & Cybernetics student at STU FEI. Interested in microcontroller programming, 3D modeling and printing, and robotics, while experimenting with modern technologies. In my free time, I enjoy cycling and hiking for balance between studies and active lifestyle." data-sk="Som študent 3. ročníka bakalárskeho štúdia Robotika a kybernetika na STU FEI. Zaujímam sa o programovanie s mikrokontrolérmi, 3D modelovanie a tlač, a robotiku, pričom rád experimentujem s modernými technológiami. Vo voľnom čase sa venujem cyklistike a turistike pre rovnováhu medzi štúdiom a aktívnym životným štýlom.">
+            Som študent 3. ročníka bakalárskeho štúdia Robotika a kybernetika na STU FEI. Zaujímam sa o programovanie s mikrokontrolérmi, 3D modelovanie a tlač, a robotiku, pričom rád experimentujem s modernými technológiami. Vo voľnom čase sa venujem cyklistike a turistike pre rovnováhu medzi štúdiom a aktívnym životným štýlom.
+          </p>
+        </div>
+
+        <div class="cv-section">
+          <h3 data-en="Education" data-sk="Vzdelanie">Vzdelanie</h3>
+          <div class="education-item">
+            <h4 data-en="Faculty of Electrical Engineering and Informatics" data-sk="Fakulta elektrotechniky a informatiky">Fakulta elektrotechniky a informatiky</h4>
+            <p data-en="Robotics & Cybernetics" data-sk="Robotika a Kybernetika"><strong>Robotika a Kybernetika</strong></p>
+            <p data-en="Slovak University of Technology in Bratislava | September 2023 - Present" data-sk="Slovenská technická univerzita v Bratislave | September 2023 - Doteraz">Slovenská technická univerzita v Bratislave | September 2023 - Doteraz</p>
+          </div>
+          <div class="education-item">
+            <h4 data-en="Grammar School" data-sk="Gymnázium">Gymnázium</h4>
+            <p data-en="Ružomberok, Slovakia | September 2019 - June 2023" data-sk="Ružomberok, Slovenská republika | September 2019 - Jún 2023">Ružomberok, Slovenská republika | September 2019 - Jún 2023</p>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h3 data-en="Technical Skills" data-sk="Technické zručnosti">Technické zručnosti</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <span class="skill-name">C</span>
+              <div class="skill-bar">
+                <div class="skill-level" style="width: 90%"></div>
+              </div>
+              <span class="skill-text" data-en="Advanced" data-sk="Pokročilý">Pokročilý</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Java</span>
+              <div class="skill-bar">
+                <div class="skill-level" style="width: 70%"></div>
+              </div>
+              <span class="skill-text" data-en="Intermediate" data-sk="Mierne pokročilý">Mierne pokročilý</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Python</span>
+              <div class="skill-bar">
+                <div class="skill-level" style="width: 70%"></div>
+              </div>
+              <span class="skill-text" data-en="Intermediate" data-sk="Mierne pokročilý">Mierne pokročilý</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">HTML/CSS</span>
+              <div class="skill-bar">
+                <div class="skill-level" style="width: 70%"></div>
+              </div>
+              <span class="skill-text" data-en="Intermediate" data-sk="Mierne pokročilý">Mierne pokročilý</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h3 data-en="Languages" data-sk="Jazyky">Jazyky</h3>
+          <ul class="languages-list">
+            <li><strong data-en="Slovak" data-sk="Slovenčina">Slovenčina</strong> - <span data-en="Native" data-sk="Rodný jazyk">Rodný jazyk</span></li>
+            <li><strong data-en="English" data-sk="Anglický jazyk">Anglický jazyk</strong> - <span data-en="Upper-Intermediate (B2)" data-sk="Stredne pokročilý (B2)">Stredne pokročilý (B2)</span></li>
+            <li><strong data-en="French" data-sk="Francúzsky jazyk">Francúzsky jazyk</strong> - <span data-en="Elementary (A2)" data-sk="Začiatočník (A2)">Začiatočník (A2)</span></li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h3 data-en="Interests & Hobbies" data-sk="Záujmy a koníčky">Záujmy a koníčky</h3>
+          <ul class="interests-list">
+            <li data-en="Working with microcontrollers (Arduino, Raspberry Pi) and developing robotic prototypes" data-sk="Práca s mikrokontrolérmi (Arduino, Raspberry Pi) a vývoj robotických prototypov">Práca s mikrokontrolérmi (Arduino, Raspberry Pi) a vývoj robotických prototypov</li>
+            <li data-en="3D modeling and printing for creating functional devices" data-sk="3D modelovanie a tlač na vytváranie funkčných zariadení">3D modelovanie a tlač na vytváranie funkčných zariadení</li>
+            <li data-en="Robotics and automation with focus on innovations" data-sk="Robotika a automatizácia s dôrazom na inovácie">Robotika a automatizácia s dôrazom na inovácie</li>
+            <li data-en="Cycling and hiking, exploring new places and countries" data-sk="Cyklistika a turistika, spoznávanie nových miest a krajín">Cyklistika a turistika, spoznávanie nových miest a krajín</li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h3 data-en="Other" data-sk="Ostatné">Ostatné</h3>
+          <p><strong data-en="Driver's License:" data-sk="Vodičský preukaz:">Vodičský preukaz:</strong> B</p>
+          <p><strong data-en="Date of Birth:" data-sk="Dátum narodenia:">Dátum narodenia:</strong> 24. 7. 2004</p>
+        </div>
+      </div>
+
+      <p>
+        <a href="cv.pdf" target="_blank" class="pdf-link" data-en="📄 Download my CV (PDF)" data-sk="📄 Stiahnuť môj životopis (PDF)">
+          📄 Stiahnuť môj životopis (PDF)
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> GreenyBeany</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

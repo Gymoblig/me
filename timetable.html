@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenyBeany - Timetable</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loader-text" data-en="Loading..." data-sk="Načítavam...">Loading...</div>
+    </div>
+  </div>
+  <header>
+    <div class="logo">GreenyBeany</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html" data-en="About Me" data-sk="O mne">About Me</a></li>
+        <li><a href="curiculum.html" data-en="Curriculum" data-sk="Životopis">Curriculum</a></li>
+        <li><a href="timetable.html" class="active" data-en="Timetable" data-sk="Rozvrh">Timetable</a></li>
+        <li><a href="projects.html" data-en="Projects" data-sk="Projekty">Projects</a></li>
+      </ul>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle"><img id="theme-icon" src="img/sun.png" alt="theme"></button>
+      <button id="lang-toggle"><img id="lang-icon" src="img/united-kingdom.png" alt="lang"></button>
+      <button id="burger">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 data-en="My Timetable" data-sk="Môj rozvrh">My Timetable</h1>
+      <div class="timetable-container">
+        
+        <!-- Monday -->
+        <div class="day-column">
+          <div class="day-title" data-en="Monday" data-sk="Pondelok">Monday</div>
+          <div class="class-item lecture">
+            <div class="class-time">8:00 – 8:50</div>
+            <div class="class-name" data-en="Control Systems" data-sk="Riadiace systémy">Riadiace systémy</div>
+            <div class="class-teacher">L. Kőrösi</div>
+          </div>
+          <div class="class-item lecture">
+            <div class="class-time">10:00 – 10:50</div>
+            <div class="class-name" data-en="Motion Systems" data-sk="Pohybové systémy">Pohybové systémy</div>
+            <div class="class-teacher">J. Kardoš</div>
+          </div>
+          <div class="class-item lecture">
+            <div class="class-time">13:00 – 13:50</div>
+            <div class="class-name" data-en="Production Systems" data-sk="Výrobné systémy">Výrobné systémy</div>
+            <div class="class-teacher">F. Duchoň</div>
+          </div>
+        </div>
+
+        <!-- Tuesday -->
+        <div class="day-column">
+          <div class="day-title" data-en="Tuesday" data-sk="Utorok">Tuesday</div>
+          <div class="class-item lab">
+            <div class="class-time">8:00 – 8:50</div>
+            <div class="class-name" data-en="Motion Systems Lab" data-sk="Pohybové systémy">Pohybové systémy</div>
+            <div class="class-teacher">Ľ. Chovanec</div>
+          </div>
+          <div class="class-item lab">
+            <div class="class-time">10:00 – 10:50</div>
+            <div class="class-name" data-en="Electronic Systems Lab" data-sk="Elektronické systémy">Elektronické systémy</div>
+            <div class="class-teacher">M. Matuš</div>
+          </div>
+          <div class="class-item lab">
+            <div class="class-time">14:00 – 14:50</div>
+            <div class="class-name" data-en="Control Systems Lab" data-sk="Riadiace systémy">Riadiace systémy</div>
+            <div class="class-teacher">L. Kőrösi</div>
+          </div>
+          <div class="class-item lab">
+            <div class="class-time">15:00 – 15:50</div>
+            <div class="class-name" data-en="Production Systems Lab" data-sk="Výrobné systémy">Výrobné systémy</div>
+            <div class="class-teacher">M. Trebuľa</div>
+          </div>
+        </div>
+
+        <!-- Wednesday -->
+        <div class="day-column">
+          <div class="day-title" data-en="Wednesday" data-sk="Streda">Wednesday</div>
+          <div class="class-item lecture">
+            <div class="class-time">8:00 – 8:50</div>
+            <div class="class-name" data-en="Electronic Systems" data-sk="Elektronické systémy">Elektronické systémy</div>
+            <div class="class-teacher">J. Marek</div>
+          </div>
+          <div class="class-item lab">
+            <div class="class-time">11:00 – 11:50</div>
+            <div class="class-name" data-en="Physical Education" data-sk="Telesná kultúra">Telesná kultúra</div>
+            <div class="class-teacher">M. Jeleň</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> GreenyBeany</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenyBeany - Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loader-text" data-en="Loading..." data-sk="Načítavam...">Loading...</div>
+    </div>
+  </div>
+  <header>
+    <div class="logo">GreenyBeany</div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html" data-en="About Me" data-sk="O mne">About Me</a></li>
+        <li><a href="curiculum.html" data-en="Curriculum" data-sk="Životopis">Curriculum</a></li>
+        <li><a href="timetable.html" data-en="Timetable" data-sk="Rozvrh">Timetable</a></li>
+        <li><a href="projects.html" class="active" data-en="Projects" data-sk="Projekty">Projects</a></li>
+      </ul>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle"><img id="theme-icon" src="sun.png" alt="theme"></button>
+      <button id="lang-toggle"><img id="lang-icon" src="united-kingdom.png" alt="lang"></button>
+      <button id="burger">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 data-en="Projects" data-sk="Projekty">Projects</h1>
+      
+      <div class="project-grid">
+        <div class="project-item">
+          <h3 data-en="BetterAis" data-sk="BetterAis">BetterAis</h3>
+          <p data-en="Enhanced AIS (Academic Information System) interface with improved functionality and user experience." data-sk="Vylepšené rozhranie AIS (Akademický informačný systém) s pokročilou funkcionalitou a lepším používateľským zážitkom.">
+            Enhanced AIS (Academic Information System) interface with improved functionality and user experience.
+          </p>
+          <a href="https://github.com/Gymoblig/BetterAis" target="_blank" class="project-link">GitHub →</a>
+        </div>
+
+        <div class="project-item">
+          <h3 data-en="Discord Cloud Storage" data-sk="Discord Cloud Storage">Discord Cloud Storage</h3>
+          <p data-en="Creative solution using Discord as a cloud storage platform for file management and sharing." data-sk="Kreatívne riešenie využívajúce Discord ako cloudové úložisko pre správu a zdieľanie súborov.">
+            Creative solution using Discord as a cloud storage platform for file management and sharing.
+          </p>
+          <a href="https://github.com/Gymoblig/DiscordCloudStorage" target="_blank" class="project-link">GitHub →</a>
+        </div>
+
+        <div class="project-item">
+          <h3 data-en="AP Website" data-sk="AP Stránka">AP Stránka</h3>
+          <p data-en="A web development project demonstrating modern design principles and responsive layouts." 
+            data-sk="Webový projekt ukazujúci moderné dizajnové princípy a responzívne rozloženie.">
+            Webový projekt ukazujúci moderné dizajnové princípy a responzívne rozloženie.
+          </p>
+          <a href="https://github.com/Gymoblig/AP-stranka" target="_blank" class="project-link">GitHub →</a>
+        </div>
+
+        <div class="project-item">
+        <h3 data-en="OOP Website" data-sk="OOP Stránka">OOP Stránka</h3>
+        <p data-en="A website created for the Object-Oriented Programming course, showcasing assignments and course materials." 
+          data-sk="Webová stránka vytvorená pre predmet Objektovo-orientované programovanie, prezentujúca zadania a materiály k predmetu.">
+          Webová stránka vytvorená pre predmet Objektovo-orientované programovanie, prezentujúca zadania a materiály k predmetu.
+        </p>
+        <a href="https://github.com/Gymoblig/oop" target="_blank" class="project-link">GitHub →</a>
+      </div>
+
+
+
+        <div class="project-item">
+          <h3 data-en="Robotics Projects" data-sk="Robotika">Robotika</h3>
+          <p data-en="Assignments from the Robotics course, including a fire truck platform project with complete calculations." 
+            data-sk="Zadania z predmetu Robotika, vrátane projektu plošiny hasičského auta so všetkými výpočtami.">
+            Zadania z predmetu Robotika, vrátane projektu plošiny hasičského auta so všetkými výpočtami.
+          </p>
+          <a href="https://github.com/Gymoblig/ROB/" target="_blank" class="project-link">GitHub →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> GreenyBeany</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
