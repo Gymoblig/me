@@ -184,3 +184,28 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// Add swipe transition effects when navigating between pages
+document.querySelectorAll('nav ul li a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetPage = this.getAttribute('href').substring(1); // Získa id cieľovej stránky
+    const currentPage = document.querySelector('.page.active');
+
+    if (currentPage.id !== targetPage) {
+      // Odstránime triedu active z aktuálnej stránky a pridáme ju na cieľovú stránku
+      currentPage.classList.remove('active');
+      const nextPage = document.getElementById(targetPage);
+      nextPage.classList.add('active');
+
+      // Spustíme animáciu pre prechod
+      currentPage.classList.add('page-exit');
+      nextPage.classList.add('page-enter');
+
+      setTimeout(() => {
+        currentPage.classList.remove('page-exit');
+        nextPage.classList.remove('page-enter');
+      }, 500);
+    }
+  });
+});
