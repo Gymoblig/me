@@ -1,62 +1,1208 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GreenyBeany - About Me</title>
-  <link rel="icon" href="img/user.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title data-en="Matúš Ondrejka — Portfolio" data-sk="Matúš Ondrejka — Portfólio">Matúš Ondrejka — Portfolio</title>
+<meta name="description" content="Matúš Ondrejka — Robotics & Cybernetics student. Embedded, robotics, networking." />
+<link rel="icon" href="img/user.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   GreenyBeany — Portfolio · B&W sleek
+   ========================================================= */
+:root{
+  --bg:#ffffff;
+  --ink:#0a0a0a;
+  --ink-2:#1a1a1a;
+  --mute:#6b6b6b;
+  --mute-2:#9a9a9a;
+  --line:#e6e6e6;
+  --line-2:#d0d0d0;
+  --soft:#f5f5f5;
+  --soft-2:#fafafa;
+  --shadow:0 1px 0 rgba(0,0,0,.04), 0 20px 60px -20px rgba(0,0,0,.18);
+  --shadow-lg:0 1px 0 rgba(0,0,0,.04), 0 40px 100px -30px rgba(0,0,0,.25);
+  --radius:18px;
+  --radius-sm:12px;
+  --radius-lg:24px;
+  --ease:cubic-bezier(.2,.7,.15,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --t-fast:.18s;
+  --t:.32s;
+  --t-slow:.6s;
+}
+
+html[data-theme="dark"]{
+  --bg:#0a0a0a;
+  --ink:#fafafa;
+  --ink-2:#eaeaea;
+  --mute:#9a9a9a;
+  --mute-2:#6b6b6b;
+  --line:#1f1f1f;
+  --line-2:#2a2a2a;
+  --soft:#121212;
+  --soft-2:#0e0e0e;
+  --shadow:0 1px 0 rgba(255,255,255,.03), 0 30px 80px -20px rgba(0,0,0,.7);
+  --shadow-lg:0 1px 0 rgba(255,255,255,.03), 0 50px 120px -30px rgba(0,0,0,.85);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"ss01","cv11";
+  letter-spacing:-.01em;
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background var(--t) var(--ease), color var(--t) var(--ease);
+}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--ink);color:var(--bg)}
+
+/* film grain */
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:1;
+  opacity:.035; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+html[data-theme="dark"] .grain{ opacity:.07; mix-blend-mode:screen }
+
+/* =========================================================
+   Loader
+   ========================================================= */
+.loader{
+  position:fixed; inset:0; z-index:200;
+  display:grid; place-items:center;
+  background:var(--bg);
+  transition:opacity .6s var(--ease), visibility .6s var(--ease);
+}
+.loader.hidden{ opacity:0; visibility:hidden; pointer-events:none }
+.loader-inner{
+  display:flex; align-items:center; gap:14px;
+  font:600 13px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mute);
+}
+.loader-dot{
+  width:10px; height:10px; border-radius:50%; background:var(--ink);
+  animation:loadDot 1.2s var(--ease) infinite;
+}
+@keyframes loadDot{
+  0%,100%{ transform:scale(1); opacity:1 }
+  50%   { transform:scale(.4); opacity:.4 }
+}
+
+/* =========================================================
+   Top bar
+   ========================================================= */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:18px 32px;
+  background:color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter:saturate(1.4) blur(14px);
+  -webkit-backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{ display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.02em }
+.brand-dot{
+  width:10px; height:10px; border-radius:50%; background:var(--ink);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--ink) 8%, transparent);
+  animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--ink) 22%, transparent) }
+  50%   { box-shadow:0 0 0 8px color-mix(in srgb, var(--ink) 0%, transparent) }
+}
+.brand-name{ font-size:15px }
+.brand-sub{ color:var(--mute); font-weight:500; font-size:13px; font-family:'JetBrains Mono',monospace }
+
+.tabs{
+  position:relative;
+  display:flex; gap:4px;
+  background:var(--soft);
+  padding:5px;
+  border-radius:999px;
+  border:1px solid var(--line);
+}
+.tab{
+  position:relative; z-index:1;
+  display:flex; align-items:center; gap:8px;
+  padding:9px 18px;
+  border:0; background:transparent;
+  color:var(--mute);
+  font:600 13px/1 'Inter',sans-serif;
+  letter-spacing:.02em;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:color var(--t) var(--ease);
+  white-space:nowrap;
+}
+.tab:hover{ color:var(--ink) }
+.tab.active{ color:var(--bg) }
+.tab-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; opacity:.6;
+}
+.tab-indicator{
+  position:absolute; top:5px; left:5px;
+  height:calc(100% - 10px);
+  background:var(--ink);
+  border-radius:999px;
+  transition:transform var(--t) var(--ease-out), width var(--t) var(--ease-out);
+  z-index:0;
+  width:0;
+}
+
+.meta{
+  display:flex; justify-content:flex-end; align-items:center; gap:8px;
+}
+.icon-btn{
+  width:38px; height:38px;
+  display:grid; place-items:center;
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all var(--t) var(--ease);
+}
+.icon-btn:hover{ background:var(--soft); border-color:var(--ink) }
+.icon-btn svg{ width:16px; height:16px }
+.lang-btn{
+  width:auto; padding:0 14px;
+  font:600 12px/1 'JetBrains Mono',monospace;
+  letter-spacing:.12em;
+}
+.burger{ display:none }
+.theme-icon-moon{ display:none }
+html[data-theme="dark"] .theme-icon-sun{ display:none }
+html[data-theme="dark"] .theme-icon-moon{ display:block }
+
+/* =========================================================
+   Stage / sections
+   ========================================================= */
+.stage{
+  position:relative; z-index:2;
+  max-width:1080px; margin:0 auto;
+  padding:0 32px;
+}
+section{
+  padding:96px 0;
+  scroll-margin-top:90px;
+  border-bottom:1px solid var(--line);
+}
+section:last-of-type{ border-bottom:0 }
+
+.eyebrow{
+  display:inline-block;
+  font:600 11px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mute);
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  margin-bottom:24px;
+}
+.section-title{
+  font-size:clamp(36px, 5vw, 56px);
+  line-height:1; letter-spacing:-.03em;
+  font-weight:800;
+  margin:0 0 32px;
+}
+.section-title em{
+  font-style:normal;
+  background:linear-gradient(90deg, var(--ink) 0%, var(--mute) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+}
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero{ padding:80px 0 96px; border-bottom:1px solid var(--line) }
+.hero-title{
+  font-size:clamp(52px, 9vw, 120px);
+  line-height:.92;
+  letter-spacing:-.045em;
+  font-weight:800;
+  margin:0 0 32px;
+}
+.hero-line{
+  display:block;
+  overflow:hidden;
+  padding-bottom:.18em;
+  margin-bottom:-.18em;
+}
+.hero-line > span{
+  display:inline-block;
+  padding-bottom:.05em;
+  animation:revealUp 1s var(--ease-out) both;
+}
+.hero-line:nth-child(1) > span{ animation-delay:.10s }
+.hero-line:nth-child(2) > span{ animation-delay:.20s }
+.hero-line:nth-child(3) > span{ animation-delay:.30s }
+.hero-line em{
+  font-style:normal;
+  background:linear-gradient(90deg, var(--ink) 0%, var(--mute) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+}
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(40px) }
+  to  { opacity:1; transform:none }
+}
+
+.hero-lead{
+  max-width:580px;
+  color:var(--mute);
+  font-size:18px; line-height:1.6;
+  margin:0 0 44px;
+  animation:revealUp 1s .45s var(--ease-out) both;
+}
+
+.hero-actions{
+  display:flex; gap:14px; flex-wrap:wrap;
+  animation:revealUp 1s .55s var(--ease-out) both;
+}
+
+.hero-meta{
+  display:flex; gap:32px; flex-wrap:wrap;
+  margin-top:64px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+  animation:revealUp 1s .7s var(--ease-out) both;
+}
+.hero-meta-item{
+  display:flex; flex-direction:column; gap:6px;
+}
+.hero-meta-key{
+  font:600 10px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mute);
+}
+.hero-meta-val{
+  font-weight:600;
+  font-size:15px;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.cta{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:16px 26px;
+  background:var(--ink); color:var(--bg);
+  border:0; border-radius:999px;
+  font:600 14px/1 'Inter',sans-serif;
+  letter-spacing:.02em;
+  cursor:pointer; text-decoration:none;
+  position:relative; overflow:hidden;
+  transition:transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+  box-shadow:0 8px 22px -8px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+.cta:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -10px color-mix(in srgb, var(--ink) 65%, transparent) }
+.cta:active{ transform:translateY(0) }
+.cta svg{ transition:transform var(--t) var(--ease) }
+.cta:hover svg{ transform:translateX(3px) }
+.ghost{
+  display:inline-flex; align-items:center; gap:10px;
+  background:transparent; color:var(--ink);
+  border:1px solid var(--line);
+  padding:15px 24px; border-radius:999px;
+  font:600 14px/1 'Inter',sans-serif;
+  cursor:pointer; text-decoration:none;
+  transition:all var(--t) var(--ease);
+}
+.ghost:hover{ border-color:var(--ink); background:var(--soft); transform:translateY(-2px) }
+
+/* =========================================================
+   About
+   ========================================================= */
+.about-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:24px;
+  margin-top:8px;
+}
+.about-card{
+  padding:28px;
+  background:var(--soft-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  transition:transform var(--t) var(--ease), border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+.about-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--ink);
+  box-shadow:var(--shadow);
+}
+.about-card h3{
+  font:600 12px/1 'JetBrains Mono',monospace;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--mute);
+  margin:0 0 16px;
+}
+.about-card p{
+  margin:0;
+  font-size:16px;
+  line-height:1.65;
+  color:var(--ink-2);
+}
+.about-lead{
+  font-size:20px;
+  line-height:1.6;
+  color:var(--ink-2);
+  max-width:780px;
+  margin:0 0 40px;
+}
+
+/* =========================================================
+   CV / Curriculum
+   ========================================================= */
+.cv-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:48px 64px;
+  margin-top:8px;
+}
+.cv-block h3{
+  font:600 11px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mute);
+  margin:0 0 24px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+
+.edu-item{ margin-bottom:24px }
+.edu-item:last-child{ margin-bottom:0 }
+.edu-role{
+  font-weight:700; font-size:17px;
+  letter-spacing:-.01em;
+  margin:0 0 4px;
+}
+.edu-place{
+  color:var(--mute);
+  font-size:14px;
+  margin:0 0 4px;
+}
+.edu-when{
+  font:500 12px/1.4 'JetBrains Mono',monospace;
+  color:var(--mute-2);
+}
+
+.skill{
+  margin-bottom:20px;
+}
+.skill:last-child{ margin-bottom:0 }
+.skill-row{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:8px;
+}
+.skill-name{
+  font-weight:600; font-size:15px;
+}
+.skill-tag{
+  font:500 11px/1 'JetBrains Mono',monospace;
+  color:var(--mute);
+}
+.skill-bar{
+  height:3px;
+  background:var(--line);
+  border-radius:999px;
+  overflow:hidden;
+}
+.skill-fill{
+  height:100%; width:0;
+  background:var(--ink);
+  border-radius:999px;
+  transition:width 1.2s var(--ease-out);
+}
+
+.lang-list, .interest-list{
+  list-style:none; padding:0; margin:0;
+}
+.lang-list li{
+  display:flex; justify-content:space-between; gap:12px;
+  padding:12px 0;
+  border-bottom:1px dashed var(--line);
+  font-size:15px;
+}
+.lang-list li:last-child{ border-bottom:0 }
+.lang-list li b{ font-weight:600 }
+.lang-list li span{ color:var(--mute); font-size:13px }
+
+.interest-list li{
+  position:relative;
+  padding:8px 0 8px 22px;
+  font-size:15px;
+  color:var(--ink-2);
+  line-height:1.5;
+}
+.interest-list li::before{
+  content:""; position:absolute;
+  left:0; top:16px;
+  width:8px; height:1px;
+  background:var(--ink);
+}
+
+.cv-cta{
+  margin-top:48px;
+  display:flex; gap:14px; flex-wrap:wrap;
+}
+
+/* =========================================================
+   Timetable
+   ========================================================= */
+.tt-wrap{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:16px;
+  margin-top:8px;
+}
+.tt-day{
+  display:flex; flex-direction:column; gap:10px;
+}
+.tt-day-title{
+  font:600 11px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mute);
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:6px;
+}
+.tt-class{
+  position:relative;
+  padding:14px 16px;
+  background:var(--soft-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  transition:transform var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+.tt-class:hover{ border-color:var(--ink); transform:translateY(-2px) }
+.tt-class.lab::before{
+  content:""; position:absolute;
+  left:14px; top:14px; bottom:14px;
+  width:2px;
+  background:var(--ink);
+  border-radius:2px;
+}
+.tt-class.lab{ padding-left:24px }
+.tt-time{
+  font:600 11px/1 'JetBrains Mono',monospace;
+  color:var(--mute);
+  margin-bottom:6px;
+}
+.tt-name{
+  font-weight:600; font-size:14px;
+  letter-spacing:-.005em;
+  margin-bottom:4px;
+  line-height:1.3;
+}
+.tt-teacher{
+  font:500 11px/1.3 'JetBrains Mono',monospace;
+  color:var(--mute-2);
+}
+
+.tt-legend{
+  display:flex; gap:18px; flex-wrap:wrap;
+  margin-top:28px;
+  font:500 12px/1 'JetBrains Mono',monospace;
+  color:var(--mute);
+}
+.tt-legend span{ display:inline-flex; align-items:center; gap:8px }
+.tt-legend i{
+  display:inline-block;
+  width:16px; height:8px; border-radius:3px;
+  background:var(--soft-2); border:1px solid var(--line);
+}
+.tt-legend i.lab{
+  border-left:2px solid var(--ink);
+}
+
+/* =========================================================
+   Projects
+   ========================================================= */
+.proj-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+  margin-top:8px;
+}
+.proj{
+  position:relative;
+  padding:32px 28px;
+  background:var(--soft-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:14px;
+  transition:transform var(--t) var(--ease), border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t) var(--ease);
+  overflow:hidden;
+}
+.proj::after{
+  content:""; position:absolute;
+  inset:0;
+  background:radial-gradient(400px 200px at var(--mx,50%) var(--my,0%), color-mix(in srgb, var(--ink) 6%, transparent), transparent 60%);
+  opacity:0; transition:opacity var(--t) var(--ease);
+  pointer-events:none;
+}
+.proj:hover{
+  transform:translateY(-4px);
+  border-color:var(--ink);
+  box-shadow:var(--shadow);
+}
+.proj:hover::after{ opacity:1 }
+.proj-num{
+  font:600 11px/1 'JetBrains Mono',monospace;
+  letter-spacing:.18em;
+  color:var(--mute);
+}
+.proj-title{
+  font-size:24px; letter-spacing:-.02em;
+  font-weight:700;
+  margin:0;
+}
+.proj-desc{
+  margin:0;
+  color:var(--mute);
+  font-size:14.5px;
+  line-height:1.6;
+  flex:1;
+}
+.proj-foot{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:8px;
+  border-top:1px solid var(--line);
+}
+.proj-link{
+  display:inline-flex; align-items:center; gap:6px;
+  font:600 12px/1 'JetBrains Mono',monospace;
+  letter-spacing:.06em;
+  color:var(--ink);
+}
+.proj-arrow{
+  width:34px; height:34px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  border:1px solid var(--line);
+  transition:all var(--t) var(--ease);
+}
+.proj:hover .proj-arrow{
+  background:var(--ink); color:var(--bg); border-color:var(--ink);
+  transform:rotate(-45deg);
+}
+.proj-arrow svg{ width:14px; height:14px; transition:transform var(--t) var(--ease) }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.footbar{
+  position:relative; z-index:2;
+  max-width:1080px; margin:0 auto;
+  padding:36px 32px;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:14px;
+  border-top:1px solid var(--line);
+  font:500 12px/1 'JetBrains Mono',monospace;
+  color:var(--mute);
+  letter-spacing:.06em;
+}
+.foot-links{ display:flex; gap:18px }
+.foot-links a{
+  color:var(--mute); text-decoration:none;
+  transition:color var(--t) var(--ease);
+}
+.foot-links a:hover{ color:var(--ink) }
+
+/* =========================================================
+   Reveal on scroll
+   ========================================================= */
+.reveal{
+  opacity:0; transform:translateY(28px);
+  transition:opacity .8s var(--ease-out), transform .8s var(--ease-out);
+}
+.reveal.in{ opacity:1; transform:none }
+.reveal[data-delay="1"]{ transition-delay:.08s }
+.reveal[data-delay="2"]{ transition-delay:.16s }
+.reveal[data-delay="3"]{ transition-delay:.24s }
+.reveal[data-delay="4"]{ transition-delay:.32s }
+.reveal[data-delay="5"]{ transition-delay:.40s }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 860px){
+  .topbar{ grid-template-columns:auto auto auto; padding:14px 18px; gap:8px }
+  .tabs{ display:none; position:absolute; top:64px; left:18px; right:18px;
+    flex-direction:column; padding:8px; border-radius:18px; background:var(--bg); border:1px solid var(--line) }
+  .tabs.show{ display:flex }
+  .tab{ justify-content:flex-start; padding:14px 16px; border-radius:12px }
+  .tab.active{ color:var(--ink); background:var(--soft) }
+  .tab-indicator{ display:none }
+  .burger{ display:grid }
+  .stage{ padding:0 18px }
+  section{ padding:64px 0 }
+  .hero{ padding:48px 0 64px }
+  .about-grid, .cv-grid, .proj-grid{ grid-template-columns:1fr; gap:16px }
+  .tt-wrap{ grid-template-columns:1fr }
+  .hero-meta{ gap:18px }
+  .footbar{ padding:28px 18px; flex-direction:column; align-items:flex-start }
+}
+@media (max-width: 480px){
+  .meta .lang-btn{ display:none }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">GreenyBeany</div>
-    <nav id="navbar">
-      <ul>
-        <li><a href="index.html" class="active" data-en="About Me" data-sk="O mne">About Me</a></li>
-        <li><a href="curiculum.html" data-en="Curriculum" data-sk="Životopis">Curriculum</a></li>
-        <li><a href="timetable.html" data-en="Timetable" data-sk="Rozvrh">Timetable</a></li>
-        <li><a href="projects.html" data-en="Projects" data-sk="Projekty">Projects</a></li>
-      </ul>
-    </nav>
-    <div class="controls">
-      <button id="theme-toggle"><img id="theme-icon" src="img/sun.png" alt="theme"></button>
-      <button id="lang-toggle"><img id="lang-icon" src="img/united-kingdom.png" alt="lang"></button>
-      <button id="burger">☰</button>
+
+<div class="grain"></div>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <span class="loader-dot"></span>
+    <span data-en="Loading" data-sk="Načítavam">Loading</span>
+  </div>
+</div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-dot"></span>
+    <span class="brand-name">GreenyBeany</span>
+    <span class="brand-sub">/ portfolio</span>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <a class="tab" href="#about" data-tab="about">
+      <span class="tab-num">01</span>
+      <span class="tab-label" data-en="About" data-sk="O mne">About</span>
+    </a>
+    <a class="tab" href="#cv" data-tab="cv">
+      <span class="tab-num">02</span>
+      <span class="tab-label" data-en="Curriculum" data-sk="Životopis">Curriculum</span>
+    </a>
+    <a class="tab" href="#timetable" data-tab="timetable">
+      <span class="tab-num">03</span>
+      <span class="tab-label" data-en="Timetable" data-sk="Rozvrh">Timetable</span>
+    </a>
+    <a class="tab" href="#projects" data-tab="projects">
+      <span class="tab-num">04</span>
+      <span class="tab-label" data-en="Projects" data-sk="Projekty">Projects</span>
+    </a>
+    <div class="tab-indicator" id="tabIndicator"></div>
+  </nav>
+
+  <div class="meta">
+    <button class="icon-btn lang-btn" id="langBtn" aria-label="Toggle language">
+      <span id="langLabel">EN</span>
+    </button>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+      <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="icon-btn burger" id="burger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="stage">
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="eyebrow" data-en="Robotics · Embedded · Networking" data-sk="Robotika · Embedded · Siete">Robotics · Embedded · Networking</div>
+    <h1 class="hero-title">
+      <span class="hero-line"><span><em data-en="The meaning" data-sk="Význam">The meaning</em></span></span>
+      <span class="hero-line"><span><em data-en="is in" data-sk=" je v">is in</em></span></span>
+      <span class="hero-line"><span><em data-en="building things." data-sk="tvorení vecí.">building things.</em></span></span>
+    </h1>
+    <p class="hero-lead"
+       data-en="Hi, I'm Matúš (a.k.a. GreenyBeany). I study Robotics & Cybernetics at STU FEI. I turn ideas into real-world projects — embedded systems, robotics, and the occasional weird web experiment."
+       data-sk="Ahoj, som Matúš (GreenyBeany). Študujem Robotiku a Kybernetiku na STU FEI. Premieňam nápady na reálne projekty — vstavané systémy, robotika a občas aj zvláštne webové experimenty.">
+      Hi, I'm Matúš (a.k.a. GreenyBeany). I study Robotics & Cybernetics at STU FEI. I turn ideas into real-world projects — embedded systems, robotics, and the occasional weird web experiment.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="cta">
+        <span data-en="See projects" data-sk="Pozri projekty">See projects</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="cv.pdf" target="_blank" class="ghost">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        <span data-en="Download CV" data-sk="Stiahnuť CV">Download CV</span>
+      </a>
     </div>
-  </header>
 
-  <main>
-    <section>
-        <h1 data-en="About Me" data-sk="O mne">O mne</h1>
-        <p data-en="Hi, my name is Matúš Ondrejka (GreenyBeany). I study Robotics & Cybernetics with a focus on embedded systems, robotics, and networking. I love exploring new technologies and turning ideas into real-world projects." 
-            data-sk="Ahoj, volám sa Matúš Ondrejka (GreenyBeany). Študujem Robotiku a Kybernetiku so zameraním na vstavané systémy, robotiku a sieťovanie. Fascinuje ma objavovanie nových technológií a prepojenie softvéru s hardvérom tak, aby vznikli funkčné a zaujímavé projekty. Snažím sa neustále rozširovať svoje znalosti a skúšať nové riešenia, ktoré kombinujú kreativitu, logické myslenie a praktickú realizáciu.">
-            Ahoj, volám sa Matúš Ondrejka (GreenyBeany). Študujem Robotiku a Kybernetiku so zameraním na vstavané systémy, robotiku a sieťovanie. Fascinuje ma objavovanie nových technológií a prepojenie softvéru s hardvérom tak, aby vznikli funkčné a zaujímavé projekty. Snažím sa neustále rozširovať svoje znalosti a skúšať nové riešenia, ktoré kombinujú kreativitu, logické myslenie a praktickú realizáciu.
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-key" data-en="Based in" data-sk="Miesto">Based in</span>
+        <span class="hero-meta-val">Bratislava, SK</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key" data-en="Studying" data-sk="Štúdium">Studying</span>
+        <span class="hero-meta-val" data-en="Robotics & Cybernetics · STU FEI" data-sk="Robotika a Kybernetika · STU FEI">Robotics & Cybernetics · STU FEI</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key" data-en="Focus" data-sk="Zameranie">Focus</span>
+        <span class="hero-meta-val" data-en="Embedded · 3D · IoT" data-sk="Embedded · 3D · IoT">Embedded · 3D · IoT</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key" data-en="Status" data-sk="Stav">Status</span>
+        <span class="hero-meta-val mono">v3.0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about-details">
+    <div class="eyebrow reveal" data-en="About me" data-sk="O mne">About me</div>
+    <h2 class="section-title reveal" data-delay="1">
+      <span data-en="Built on " data-sk="Postavené na ">Built on </span><em data-en="curiosity." data-sk="zvedavosti.">curiosity.</em>
+    </h2>
+    <p class="about-lead reveal" data-delay="2"
+       data-en="Every project is an opportunity to learn something new and combine logic with creativity. It's not just about code or mechanisms — it's about meaningful solutions that bring joy through discovery."
+       data-sk="Každý projekt je príležitosť naučiť sa niečo nové a spojiť logiku s kreativitou. Nie je to len o kóde alebo mechanizmoch — ide o riešenia, ktoré majú zmysel a prinášajú radosť z objavovania.">
+      Every project is an opportunity to learn something new and combine logic with creativity. It's not just about code or mechanisms — it's about meaningful solutions that bring joy through discovery.
+    </p>
+
+    <div class="about-grid">
+      <div class="about-card reveal" data-delay="1">
+        <h3 data-en="Hobbies" data-sk="Záľuby">Hobbies</h3>
+        <p data-en="Coding, 3D printing, hacking on Arduino & ESP32, retrofuturism-inspired art, and robotics projects that push my skills further. I love experimenting and learning from every attempt — successful or not."
+           data-sk="Programovanie, 3D tlač, experimenty s Arduino a ESP32, retrofuturistické umenie a robotické projekty, ktoré ma posúvajú ďalej. Rád skúšam nové prístupy a učím sa z každého pokusu — úspešného aj neúspešného.">
+          Coding, 3D printing, hacking on Arduino & ESP32, retrofuturism-inspired art, and robotics projects that push my skills further. I love experimenting and learning from every attempt — successful or not.
         </p>
-        <br>
-        <p>
-            <strong data-en="Hobbies:" data-sk="Záľuby:">Záľuby:</strong> 
-            <span data-en="Coding, 3D printing, exploring possibilities with Arduino & ESP32, creating retrofuturism-inspired art, and building robotics projects that challenge my skills and foster creative thinking. I enjoy experimenting with different approaches and learning from both successes and failures." 
-                data-sk="Programovanie, 3D tlač, objavovanie možností s Arduino a ESP32, tvorba retrofuturistického umenia a realizácia robotických projektov, ktoré preverujú moje schopnosti a podporujú kreatívne myslenie. Rád skúmam nové nápady, experimentujem s rôznymi prístupmi a učím sa z každého úspechu aj z neúspechu.">
-            Programovanie, 3D tlač, objavovanie možností s Arduino a ESP32, tvorba retrofuturistického umenia a realizácia robotických projektov, ktoré preverujú moje schopnosti a podporujú kreatívne myslenie. Rád skúmam nové nápady, experimentujem s rôznymi prístupmi a učím sa z každého úspechu aj z neúspechu.
-            </span>
+      </div>
+      <div class="about-card reveal" data-delay="2">
+        <h3 data-en="Philosophy" data-sk="Filozofia">Philosophy</h3>
+        <p data-en="Technology has the power to make the world better. Every project is a chance to grow, learn, and combine logic with creativity — to create solutions that matter and spark joy in the process of making."
+           data-sk="Technológie majú moc zmeniť svet k lepšiemu. Každý projekt je šanca rásť, učiť sa a spájať logiku s kreativitou — tvoriť riešenia, ktoré majú zmysel a prinášajú radosť z procesu tvorby.">
+          Technology has the power to make the world better. Every project is a chance to grow, learn, and combine logic with creativity — to create solutions that matter and spark joy in the process of making.
         </p>
-        <br>
-        <p>
-            <strong data-en="Philosophy:" data-sk="Moja filozofia:">Moja filozofia / Philosophy:</strong>  
-            <span data-en="I believe technology has the power to make the world better. Every project is an opportunity to grow, learn something new, and combine logic with creativity. It's not just about coding or building mechanisms – it's about creating meaningful solutions that bring joy through discovery and innovation." 
-                data-sk="Verím, že technológie majú moc zmeniť svet k lepšiemu. Každý projekt je pre mňa príležitosťou posunúť sa vpred, naučiť sa niečo nové a spojiť logiku s kreativitou. Nejde len o kódovanie či stavbu mechanizmov – ide o tvorbu riešení, ktoré majú zmysel a prinášajú radosť z objavovania a tvorby.">
-            Verím, že technológie majú moc zmeniť svet k lepšiemu. Každý projekt je pre mňa príležitosťou posunúť sa vpred, naučiť sa niečo nové a spojiť logiku s kreativitou. Nejde len o kódovanie či stavbu mechanizmov – ide o tvorbu riešení, ktoré majú zmysel a prinášajú radosť z objavovania a tvorby.
-            </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="eyebrow reveal" data-en="Curriculum vitae" data-sk="Životopis">Curriculum vitae</div>
+    <h2 class="section-title reveal" data-delay="1">
+      <span data-en="The " data-sk="Cesta ">The </span><em data-en="journey." data-sk="vpred.">journey.</em>
+    </h2>
+
+    <div class="cv-grid">
+      <div class="cv-block reveal" data-delay="1">
+        <h3 data-en="Education" data-sk="Vzdelanie">Education</h3>
+        <div class="edu-item">
+          <p class="edu-role" data-en="Robotics & Cybernetics — Bachelor" data-sk="Robotika a Kybernetika — Bakalár">Robotics & Cybernetics — Bachelor</p>
+          <p class="edu-place" data-en="Faculty of Electrical Engineering and Informatics, STU Bratislava" data-sk="Fakulta elektrotechniky a informatiky, STU Bratislava">Faculty of Electrical Engineering and Informatics, STU Bratislava</p>
+          <p class="edu-when" data-en="Sep 2023 — present" data-sk="Sep 2023 — doteraz">Sep 2023 — present</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-role" data-en="Grammar School" data-sk="Gymnázium">Grammar School</p>
+          <p class="edu-place" data-en="Ružomberok, Slovakia" data-sk="Ružomberok, Slovensko">Ružomberok, Slovakia</p>
+          <p class="edu-when" data-en="Sep 2019 — Jun 2023" data-sk="Sep 2019 — Jún 2023">Sep 2019 — Jun 2023</p>
+        </div>
+      </div>
+
+      <div class="cv-block reveal" data-delay="2">
+        <h3 data-en="Skills" data-sk="Zručnosti">Skills</h3>
+        <div class="skill">
+          <div class="skill-row"><span class="skill-name">C</span><span class="skill-tag" data-en="Advanced" data-sk="Pokročilý">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span class="skill-name">Java</span><span class="skill-tag" data-en="Intermediate" data-sk="Mierne pokročilý">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span class="skill-name">Python</span><span class="skill-tag" data-en="Intermediate" data-sk="Mierne pokročilý">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span class="skill-name">HTML / CSS</span><span class="skill-tag" data-en="Intermediate" data-sk="Mierne pokročilý">Intermediate</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+        </div>
+      </div>
+
+      <div class="cv-block reveal" data-delay="1">
+        <h3 data-en="Languages" data-sk="Jazyky">Languages</h3>
+        <ul class="lang-list">
+          <li><b data-en="Slovak" data-sk="Slovenčina">Slovak</b><span data-en="Native" data-sk="Rodný">Native</span></li>
+          <li><b data-en="English" data-sk="Angličtina">English</b><span>B2 · Upper-Intermediate</span></li>
+          <li><b data-en="French" data-sk="Francúzština">French</b><span>A2 · Elementary</span></li>
+        </ul>
+      </div>
+
+      <div class="cv-block reveal" data-delay="2">
+        <h3 data-en="Interests" data-sk="Záujmy">Interests</h3>
+        <ul class="interest-list">
+          <li data-en="Microcontrollers (Arduino, Raspberry Pi) and robotic prototypes"
+              data-sk="Mikrokontroléry (Arduino, Raspberry Pi) a robotické prototypy">Microcontrollers (Arduino, Raspberry Pi) and robotic prototypes</li>
+          <li data-en="3D modeling and printing for functional devices"
+              data-sk="3D modelovanie a tlač funkčných zariadení">3D modeling and printing for functional devices</li>
+          <li data-en="Robotics and automation with a focus on innovation"
+              data-sk="Robotika a automatizácia s dôrazom na inovácie">Robotics and automation with a focus on innovation</li>
+          <li data-en="Cycling, hiking, exploring new places"
+              data-sk="Cyklistika, turistika, objavovanie nových miest">Cycling, hiking, exploring new places</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-cta reveal" data-delay="3">
+      <a href="cv.pdf" target="_blank" class="cta">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        <span data-en="Download full CV (PDF)" data-sk="Stiahnuť celý životopis (PDF)">Download full CV (PDF)</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TIMETABLE -->
+  <section id="timetable">
+    <div class="eyebrow reveal" data-en="Current semester" data-sk="Aktuálny semester">Current semester</div>
+    <h2 class="section-title reveal" data-delay="1">
+      <span data-en="My " data-sk="Môj ">My </span><em data-en="timetable." data-sk="rozvrh.">timetable.</em>
+    </h2>
+
+    <div class="tt-wrap">
+      <div class="tt-day reveal" data-delay="1">
+        <div class="tt-day-title" data-en="Monday" data-sk="Pondelok">Monday</div>
+        <div class="tt-class lab">
+          <div class="tt-time">07:00 — 08:50</div>
+          <div class="tt-name" data-en="Physical Education 6" data-sk="Telesná kultúra 6">Physical Education 6</div>
+          <div class="tt-teacher">V. Pajkoš · POML</div>
+        </div>
+        <div class="tt-class">
+          <div class="tt-time">10:00 — 11:50</div>
+          <div class="tt-name" data-en="Continuous Processes" data-sk="Spojité procesy">Continuous Processes</div>
+          <div class="tt-teacher">E. Miklovičová · ab150</div>
+        </div>
+        <div class="tt-class">
+          <div class="tt-time">13:00 — 14:50</div>
+          <div class="tt-name" data-en="Industrial IoT" data-sk="Priemyselný IoT">Industrial IoT</div>
+          <div class="tt-teacher">L. Mrafko · bc300</div>
+        </div>
+      </div>
+
+      <div class="tt-day reveal" data-delay="2">
+        <div class="tt-day-title" data-en="Tuesday" data-sk="Utorok">Tuesday</div>
+        <div class="tt-class">
+          <div class="tt-time">10:00 — 11:50</div>
+          <div class="tt-name" data-en="Artificial Intelligence" data-sk="Umelá inteligencia">Artificial Intelligence</div>
+          <div class="tt-teacher">I. Sekaj · cd300</div>
+        </div>
+        <div class="tt-class lab">
+          <div class="tt-time">13:00 — 14:50</div>
+          <div class="tt-name" data-en="Industrial IoT" data-sk="Priemyselný IoT">Industrial IoT</div>
+          <div class="tt-teacher">L. Mrafko · d328</div>
+        </div>
+        <div class="tt-class lab">
+          <div class="tt-time">15:00 — 16:50</div>
+          <div class="tt-name" data-en="Robotic Manipulators Control" data-sk="Riadenie rob. manipulátorov">Robotic Manipulators Control</div>
+          <div class="tt-teacher">J. Ivan · d619</div>
+        </div>
+      </div>
+
+      <div class="tt-day reveal" data-delay="3">
+        <div class="tt-day-title" data-en="Wednesday" data-sk="Streda">Wednesday</div>
+        <div class="tt-class lab">
+          <div class="tt-time">10:00 — 11:50</div>
+          <div class="tt-name" data-en="Continuous Processes" data-sk="Spojité procesy">Continuous Processes</div>
+          <div class="tt-teacher">E. Miklovičová · d301</div>
+        </div>
+        <div class="tt-class lab">
+          <div class="tt-time">13:00 — 14:50</div>
+          <div class="tt-name" data-en="Artificial Intelligence" data-sk="Umelá inteligencia">Artificial Intelligence</div>
+          <div class="tt-teacher">T. Lizák · d713</div>
+        </div>
+      </div>
+
+      <div class="tt-day reveal" data-delay="4">
+        <div class="tt-day-title" data-en="Thursday" data-sk="Štvrtok">Thursday</div>
+        <div class="tt-class">
+          <div class="tt-time">10:00 — 11:50</div>
+          <div class="tt-name" data-en="Robotic Manipulators Control" data-sk="Riadenie rob. manipulátorov">Robotic Manipulators Control</div>
+          <div class="tt-teacher">A. Babinec · cd150</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tt-legend reveal" data-delay="5">
+      <span><i></i><span data-en="Lecture" data-sk="Prednáška">Lecture</span></span>
+      <span><i class="lab"></i><span data-en="Lab / Seminar" data-sk="Laboratórium / Cvičenie">Lab / Seminar</span></span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="eyebrow reveal" data-en="Selected work" data-sk="Vybrané projekty">Selected work</div>
+    <h2 class="section-title reveal" data-delay="1">
+      <span data-en="Recent " data-sk="Posledné ">Recent </span><em data-en="projects." data-sk="projekty.">projects.</em>
+    </h2>
+
+    <div class="proj-grid">
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/BetterAis" target="_blank" rel="noopener">
+        <span class="proj-num">01</span>
+        <h3 class="proj-title">BetterAis</h3>
+        <p class="proj-desc"
+           data-en="Enhanced AIS (Academic Information System) interface with improved functionality and a smoother user experience."
+           data-sk="Vylepšené rozhranie AIS (Akademický informačný systém) s pokročilou funkcionalitou a plynulejším používateľským zážitkom.">
+          Enhanced AIS (Academic Information System) interface with improved functionality and a smoother user experience.
         </p>
-    </section>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
 
+      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/DiscordCloudStorage" target="_blank" rel="noopener">
+        <span class="proj-num">02</span>
+        <h3 class="proj-title">Discord Cloud Storage</h3>
+        <p class="proj-desc"
+           data-en="Creative solution using Discord as a cloud storage platform for file management and sharing."
+           data-sk="Kreatívne riešenie využívajúce Discord ako cloudové úložisko na správu a zdieľanie súborov.">
+          Creative solution using Discord as a cloud storage platform for file management and sharing.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
 
-  </main>
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/AP-stranka" target="_blank" rel="noopener">
+        <span class="proj-num">03</span>
+        <h3 class="proj-title" data-en="AP Website" data-sk="AP Stránka">AP Website</h3>
+        <p class="proj-desc"
+           data-en="Web project demonstrating modern design principles and responsive layouts."
+           data-sk="Webový projekt ukazujúci moderné dizajnové princípy a responzívne rozloženie.">
+          Web project demonstrating modern design principles and responsive layouts.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
 
-  <footer>
-    <p>&copy; <span id="year"></span> GreenyBeany</p>
-  </footer>
+      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/oop" target="_blank" rel="noopener">
+        <span class="proj-num">04</span>
+        <h3 class="proj-title" data-en="OOP Website" data-sk="OOP Stránka">OOP Website</h3>
+        <p class="proj-desc"
+           data-en="Website built for the Object-Oriented Programming course — showcases assignments and course materials."
+           data-sk="Webová stránka vytvorená pre predmet Objektovo-orientované programovanie — prezentuje zadania a materiály.">
+          Website built for the Object-Oriented Programming course — showcases assignments and course materials.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
 
-  <script src="script.js"></script>
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/ROB/" target="_blank" rel="noopener">
+        <span class="proj-num">05</span>
+        <h3 class="proj-title" data-en="Robotics Projects" data-sk="Robotika">Robotics Projects</h3>
+        <p class="proj-desc"
+           data-en="Assignments from the Robotics course, including a fire-truck platform project with complete calculations."
+           data-sk="Zadania z predmetu Robotika, vrátane projektu plošiny hasičského auta so všetkými výpočtami.">
+          Assignments from the Robotics course, including a fire-truck platform project with complete calculations.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig" target="_blank" rel="noopener">
+        <span class="proj-num">06</span>
+        <h3 class="proj-title" data-en="More on GitHub" data-sk="Viac na GitHube">More on GitHub</h3>
+        <p class="proj-desc"
+           data-en="Explore the rest of my work — experiments, course assignments, and side projects."
+           data-sk="Pozri zvyšok mojej tvorby — experimenty, školské zadania a vedľajšie projekty.">
+          Explore the rest of my work — experiments, course assignments, and side projects.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link" data-en="All repos" data-sk="Všetky repá">All repos</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footbar">
+  <span>&copy; <span id="year"></span> GreenyBeany · B&amp;W · sleek</span>
+  <div class="foot-links">
+    <a href="https://github.com/Gymoblig" target="_blank" rel="noopener">GitHub</a>
+    <a href="cv.pdf" target="_blank" data-en="CV" data-sk="CV">CV</a>
+  </div>
+  <span class="mono">v3.0</span>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Theme ---------- */
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initialTheme);
+
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  /* ---------- Language ---------- */
+  let currentLang = localStorage.getItem('lang') || 'en';
+  const langLabel = document.getElementById('langLabel');
+
+  function applyLang(lang){
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const v = el.getAttribute('data-' + lang);
+      if (v !== null) el.textContent = v;
+    });
+    langLabel.textContent = (lang === 'en') ? 'EN' : 'SK';
+    document.documentElement.setAttribute('lang', lang);
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    requestAnimationFrame(updateTabIndicator);
+  }
+  applyLang(currentLang);
+
+  document.getElementById('langBtn').addEventListener('click', () => {
+    applyLang(currentLang === 'en' ? 'sk' : 'en');
+  });
+
+  /* ---------- Loader ---------- */
+  const loader = document.getElementById('loader');
+  const hideLoader = () => loader.classList.add('hidden');
+  window.addEventListener('load', () => setTimeout(hideLoader, 400));
+  setTimeout(hideLoader, 2500);
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Tabs: scroll-spy + sliding indicator ---------- */
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const indicator = document.getElementById('tabIndicator');
+  const tabsContainer = document.getElementById('tabs');
+
+  function updateTabIndicator(){
+    const active = tabsContainer.querySelector('.tab.active');
+    if (!active || tabsContainer.classList.contains('show') === false && window.innerWidth <= 860) {
+      indicator.style.width = '0px';
+      return;
+    }
+    if (window.innerWidth <= 860){ indicator.style.width = '0px'; return; }
+    const wrap = tabsContainer.getBoundingClientRect();
+    const r = active.getBoundingClientRect();
+    indicator.style.width = r.width + 'px';
+    indicator.style.transform = `translateX(${r.left - wrap.left - 5}px)`;
+  }
+
+  function setActiveTab(id){
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+    updateTabIndicator();
+  }
+
+  const sectionMap = {
+    'about': document.getElementById('about'),
+    'cv': document.getElementById('cv'),
+    'timetable': document.getElementById('timetable'),
+    'projects': document.getElementById('projects')
+  };
+
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        const id = e.target.id;
+        if (sectionMap[id]) setActiveTab(id);
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  Object.values(sectionMap).forEach(s => s && scrollSpy.observe(s));
+
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabsContainer.classList.remove('show');
+    });
+  });
+
+  window.addEventListener('resize', updateTabIndicator);
+  window.addEventListener('load', () => requestAnimationFrame(updateTabIndicator));
+  setTimeout(updateTabIndicator, 100);
+
+  /* ---------- Burger (mobile) ---------- */
+  document.getElementById('burger').addEventListener('click', (e) => {
+    e.stopPropagation();
+    tabsContainer.classList.toggle('show');
+  });
+  document.addEventListener('click', (e) => {
+    if (!tabsContainer.contains(e.target) && e.target.id !== 'burger' && !e.target.closest('#burger')){
+      tabsContainer.classList.remove('show');
+    }
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealItems = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach(el => revealObs.observe(el));
+
+  /* ---------- Skill bars animate when visible ---------- */
+  const fills = document.querySelectorAll('.skill-fill');
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        const lvl = e.target.getAttribute('data-level') || '0';
+        e.target.style.width = lvl + '%';
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  fills.forEach(f => skillObs.observe(f));
+
+  /* ---------- Project card cursor-tracked glow ---------- */
+  document.querySelectorAll('.proj').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  });
+
+})();
+</script>
 </body>
 </html>
