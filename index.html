@@ -572,6 +572,22 @@ section:last-of-type{ border-bottom:0 }
   letter-spacing:.18em;
   color:var(--mute);
 }
+.proj-tag{
+  display:inline-block; align-self:flex-start;
+  font:600 10px/1 'JetBrains Mono',monospace;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mute);
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  margin-top:-4px;
+  transition:border-color var(--t) var(--ease), color var(--t) var(--ease);
+}
+.proj:hover .proj-tag{ border-color:var(--ink); color:var(--ink) }
+.proj-grid > .proj:nth-child(5){ grid-column:1 / -1 }
+@media (max-width: 860px){
+  .proj-grid > .proj:nth-child(5){ grid-column:auto }
+}
 .proj-title{
   font-size:24px; letter-spacing:-.02em;
   font-weight:700;
@@ -960,27 +976,14 @@ section:last-of-type{ border-bottom:0 }
     </h2>
 
     <div class="proj-grid">
-      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/BetterAis" target="_blank" rel="noopener">
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/DiscordCloudStorage" target="_blank" rel="noopener">
         <span class="proj-num">01</span>
-        <h3 class="proj-title">BetterAis</h3>
-        <p class="proj-desc"
-           data-en="Enhanced AIS (Academic Information System) interface with improved functionality and a smoother user experience."
-           data-sk="Vylepšené rozhranie AIS (Akademický informačný systém) s pokročilou funkcionalitou a plynulejším používateľským zážitkom.">
-          Enhanced AIS (Academic Information System) interface with improved functionality and a smoother user experience.
-        </p>
-        <div class="proj-foot">
-          <span class="proj-link">GitHub</span>
-          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-
-      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/DiscordCloudStorage" target="_blank" rel="noopener">
-        <span class="proj-num">02</span>
+        <span class="proj-tag mono">Python · .EXE</span>
         <h3 class="proj-title">Discord Cloud Storage</h3>
         <p class="proj-desc"
-           data-en="Creative solution using Discord as a cloud storage platform for file management and sharing."
-           data-sk="Kreatívne riešenie využívajúce Discord ako cloudové úložisko na správu a zdieľanie súborov.">
-          Creative solution using Discord as a cloud storage platform for file management and sharing.
+           data-en="A Discord bot that turns your own server into personal cloud storage — upload, list and download files straight from chat. Packaged as a no-setup .exe."
+           data-sk="Discord bot, ktorý premení tvoj server na osobné cloudové úložisko — nahrávaj, prezeraj a sťahuj súbory priamo z chatu. Pribalené ako .exe bez inštalácie.">
+          A Discord bot that turns your own server into personal cloud storage — upload, list and download files straight from chat. Packaged as a no-setup .exe.
         </p>
         <div class="proj-foot">
           <span class="proj-link">GitHub</span>
@@ -988,13 +991,29 @@ section:last-of-type{ border-bottom:0 }
         </div>
       </a>
 
-      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/AP-stranka" target="_blank" rel="noopener">
+      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/BetterAis" target="_blank" rel="noopener">
+        <span class="proj-num">02</span>
+        <span class="proj-tag mono">Chrome Ext · CSS</span>
+        <h3 class="proj-title">BetterAis</h3>
+        <p class="proj-desc"
+           data-en="A Chrome extension that visually overhauls is.stuba.sk — modern typography, cleaner layout and a calmer UI for the daily AIS grind."
+           data-sk="Chrome rozšírenie, ktoré vizuálne prerába is.stuba.sk — moderná typografia, čistejší layout a pokojnejšie UI pre každodenný AIS.">
+          A Chrome extension that visually overhauls is.stuba.sk — modern typography, cleaner layout and a calmer UI for the daily AIS grind.
+        </p>
+        <div class="proj-foot">
+          <span class="proj-link">GitHub</span>
+          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/UMINT" target="_blank" rel="noopener">
         <span class="proj-num">03</span>
-        <h3 class="proj-title" data-en="AP Website" data-sk="AP Stránka">AP Website</h3>
+        <span class="proj-tag mono">MATLAB · AI</span>
+        <h3 class="proj-title">UMINT</h3>
         <p class="proj-desc"
-           data-en="Web project demonstrating modern design principles and responsive layouts."
-           data-sk="Webový projekt ukazujúci moderné dizajnové princípy a responzívne rozloženie.">
-          Web project demonstrating modern design principles and responsive layouts.
+           data-en="Complete worked-out assignments from the Artificial Intelligence course at FEI STU — search algorithms, optimization and classic AI techniques in MATLAB."
+           data-sk="Kompletné vypracované zadania z predmetu Umelá Inteligencia na FEI STU — vyhľadávacie algoritmy, optimalizácia a klasické AI techniky v MATLABe.">
+          Complete worked-out assignments from the Artificial Intelligence course at FEI STU — search algorithms, optimization and classic AI techniques in MATLAB.
         </p>
         <div class="proj-foot">
           <span class="proj-link">GitHub</span>
@@ -1002,13 +1021,14 @@ section:last-of-type{ border-bottom:0 }
         </div>
       </a>
 
-      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/oop" target="_blank" rel="noopener">
+      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig/timetable" target="_blank" rel="noopener">
         <span class="proj-num">04</span>
-        <h3 class="proj-title" data-en="OOP Website" data-sk="OOP Stránka">OOP Website</h3>
+        <span class="proj-tag mono">Web · Drag & Drop</span>
+        <h3 class="proj-title" data-en="FEI STU Timetable" data-sk="Rozvrh FEI STU">FEI STU Timetable</h3>
         <p class="proj-desc"
-           data-en="Website built for the Object-Oriented Programming course — showcases assignments and course materials."
-           data-sk="Webová stránka vytvorená pre predmet Objektovo-orientované programovanie — prezentuje zadania a materiály.">
-          Website built for the Object-Oriented Programming course — showcases assignments and course materials.
+           data-en="Interactive timetable for FEI STU students — import the Excel export from AIS, drag & drop seminars into chosen slots, then export the finished schedule as PDF."
+           data-sk="Interaktívny rozvrh pre študentov FEI STU — naimportuj Excel export z AISu, drag & drop cvičení do zvolených termínov a hotový rozvrh exportuj do PDF.">
+          Interactive timetable for FEI STU students — import the Excel export from AIS, drag & drop seminars into chosen slots, then export the finished schedule as PDF.
         </p>
         <div class="proj-foot">
           <span class="proj-link">GitHub</span>
@@ -1016,30 +1036,17 @@ section:last-of-type{ border-bottom:0 }
         </div>
       </a>
 
-      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/ROB/" target="_blank" rel="noopener">
+      <a class="proj reveal" data-delay="1" href="https://github.com/Gymoblig/OSRT_Semestralka" target="_blank" rel="noopener">
         <span class="proj-num">05</span>
-        <h3 class="proj-title" data-en="Robotics Projects" data-sk="Robotika">Robotics Projects</h3>
+        <span class="proj-tag mono">C · Sockets · Threads</span>
+        <h3 class="proj-title" data-en="OSRT — Client/Server" data-sk="OSRT — Klient/Server">OSRT — Client/Server</h3>
         <p class="proj-desc"
-           data-en="Assignments from the Robotics course, including a fire-truck platform project with complete calculations."
-           data-sk="Zadania z predmetu Robotika, vrátane projektu plošiny hasičského auta so všetkými výpočtami.">
-          Assignments from the Robotics course, including a fire-truck platform project with complete calculations.
+           data-en="A multithreaded client–server in C: client sends point coordinates over sockets, server computes the distance. Uses mutexes for shared state and signal-based input timeouts."
+           data-sk="Multithreadový klient–server v jazyku C: klient posiela súradnice bodov cez sockety, server vypočíta vzdialenosť. Mutexy chránia zdieľaný stav, signály ošetrujú timeouty.">
+          A multithreaded client–server in C: client sends point coordinates over sockets, server computes the distance. Uses mutexes for shared state and signal-based input timeouts.
         </p>
         <div class="proj-foot">
           <span class="proj-link">GitHub</span>
-          <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-
-      <a class="proj reveal" data-delay="2" href="https://github.com/Gymoblig" target="_blank" rel="noopener">
-        <span class="proj-num">06</span>
-        <h3 class="proj-title" data-en="More on GitHub" data-sk="Viac na GitHube">More on GitHub</h3>
-        <p class="proj-desc"
-           data-en="Explore the rest of my work — experiments, course assignments, and side projects."
-           data-sk="Pozri zvyšok mojej tvorby — experimenty, školské zadania a vedľajšie projekty.">
-          Explore the rest of my work — experiments, course assignments, and side projects.
-        </p>
-        <div class="proj-foot">
-          <span class="proj-link" data-en="All repos" data-sk="Všetky repá">All repos</span>
           <span class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
